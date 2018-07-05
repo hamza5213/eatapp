@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">UberEat</string>
+    <string name="title_activity_food_display">FoodDisplayActivity</string>
+</resources>

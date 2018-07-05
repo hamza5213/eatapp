@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_layout_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.ubereat.world.Activity.AddFoodActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:id="@+id/tt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/add_project_colour"
+                android:orientation="vertical"
+                android:paddingBottom="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="20dp"
+                tools:layout_editor_absoluteX="20dp">
+
+
+                <TextView
+                    android:id="@+id/add_food_tile_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Food Name"
+                    android:textColor="@android:color/background_light" />
+
+                <EditText
+                    android:id="@+id/add_Food_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="Enter the food item title"
+                    android:inputType="text"
+                    android:textColor="@android:color/background_light"
+                    android:textColorHint="?android:attr/textColorHintInverse"
+                    android:textCursorDrawable="@null" />
+
+                <TextView
+                    android:id="@+id/add_food_description_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Food Item Description"
+                    android:textColor="@android:color/background_light" />
+
+                <EditText
+                    android:id="@+id/add_food_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="Enter Food item Description"
+                    android:inputType="textMultiLine"
+                    android:textColor="@android:color/background_light"
+                    android:textColorHint="?android:attr/textColorHintInverse"
+                    android:textCursorDrawable="@null" />
+
+                <TextView
+                    android:id="@+id/add_food_price_heading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Food Item Price"
+                    android:textColor="@android:color/background_light" />
+
+                <EditText
+                    android:id="@+id/add_food_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:ems="10"
+                    android:fontFamily="@font/montserrat"
+                    android:hint="Enter the food price"
+                    android:textColor="@android:color/background_light"
+                    android:textColorHint="?android:attr/textColorHintInverse"
+                    />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/add_food_Spice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Spice Level"
+                android:textColor="@android:color/background_dark" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <ImageButton
+                    android:id="@+id/spice_high"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:onClick="onHighSpiceClick"
+                    app:srcCompat="@drawable/fire" />
+
+                <ImageButton
+                    android:id="@+id/spice_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:onClick="onMediumSpiceClick"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@drawable/drop" />
+
+                <ImageButton
+                    android:id="@+id/spice_low"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:onClick="onLowSpiceClick"
+                    app:srcCompat="@drawable/leaf" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/spice_high_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:text="Spicy"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/spice_medium_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:text="Mild"
+                    android:textColor="@android:color/black" />
+
+
+                <TextView
+                    android:id="@+id/spice_low_textview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center"
+                    android:text="Low"
+                    android:textColor="@android:color/black" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/add_FoodPic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Food Picture"
+                android:textColor="@android:color/background_dark" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/foodPic"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="120dp"
+                    android:src="@drawable/round_local_pizza_white_36dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"/>
+
+                <ImageButton
+                    android:id="@+id/food_pic_selector"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="70dp"
+                    android:layout_weight="1"
+                    android:onClick="onPicClick"
+                    android:src="@drawable/twotone_camera_alt_white_18dp" />
+            </LinearLayout>
+
+
+
+
+            <Button
+                android:id="@+id/food_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="28sp"
+                android:text="Done"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:onClick="onDoneClick"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
