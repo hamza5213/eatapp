@@ -1,5 +1,6 @@
 package com.ubereat.world.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -31,12 +32,14 @@ public class MyOrders extends AppCompatActivity implements OnListFragmentInterac
     FirebaseDatabase firebaseDatabase;
     ArrayList<OrderMetadata> orderMetadataArrayList;
     MyOrderAdapter adapter;
+    ArrayList<String>orderIDs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_orders);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        orderIDs=new ArrayList<>();
         firebaseDatabase=FirebaseDatabase.getInstance();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +63,7 @@ public class MyOrders extends AppCompatActivity implements OnListFragmentInterac
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
                 orderMetadataArrayList.add(dataSnapshot.getValue(OrderMetadata.class));
+                orderIDs.add(dataSnapshot.getKey());
             }
 
             @Override
@@ -86,6 +90,10 @@ public class MyOrders extends AppCompatActivity implements OnListFragmentInterac
 
     @Override
     public void onListFragmentInteraction(Bundle details, String action, boolean isFabClicked) {
+
+        int position=details.getInt("position");
+        Intent i=new Intent (this,OrderDetail.class);
+        i.putExtra("orderId",orderIDs.get(position));
 
 
     }

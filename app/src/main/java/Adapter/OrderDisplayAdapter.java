@@ -51,14 +51,6 @@ public class OrderDisplayAdapter extends RecyclerView.Adapter<OrderDisplayAdapte
             holder.foodItem=mValues.get(position);
             holder.mFoodTitle.setText(mValues.get(position).getFoodItemTitle());
             holder.mFoodDescription.setText(mValues.get(position).getFoodItemDescription());
-            holder.mFoodAdd.setOnClickListener(new View.OnClickListener(){
-    @Override
-    public void onClick(View v){
-            Bundle bundle=new Bundle();
-            bundle.putParcelable("FoodItem",mValues.get(position));
-            mListener.onListFragmentInteraction(bundle,"foodItem",true);
-            }
-            });
             StorageReference ref=storage.getReference().child("FoodPic/"+mValues.get(position).getfID()+".jpg");
             Glide.with(c.getApplicationContext()).load(ref).into(holder.mFoodPicture);
             }
@@ -76,7 +68,6 @@ public class OrderDisplayAdapter extends RecyclerView.Adapter<OrderDisplayAdapte
         public final ImageView mFoodPicture;
         public final TextView mFoodTitle;
         public final TextView mFoodDescription;
-        public final ImageButton mFoodAdd;
         public FoodItem foodItem;
 
 
@@ -86,7 +77,6 @@ public class OrderDisplayAdapter extends RecyclerView.Adapter<OrderDisplayAdapte
             mFoodPicture= view.findViewById(R.id.order_detail_foodImage);
             mFoodTitle = view.findViewById(R.id.order_detail_title);
             mFoodDescription=view.findViewById(R.id.order_detail_description);
-            mFoodAdd=view.findViewById(R.id.order_details_minus);
         }
     }
 
