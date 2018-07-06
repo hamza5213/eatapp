@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import ModelClasses.FoodItem;
 import ModelClasses.Order;
 import ModelClasses.OrderFirebase;
+import ModelClasses.OrderMetadata;
 import io.nlopez.smartlocation.OnLocationUpdatedListener;
 import io.nlopez.smartlocation.SmartLocation;
 import io.nlopez.smartlocation.location.config.LocationAccuracy;
@@ -141,6 +142,7 @@ public class GetUserLocation extends FragmentActivity implements OnMapReadyCallb
                             OrderFirebase orderFirebase=new OrderFirebase(foodItems,totalBill,location.getLongitude(),location.getLatitude(),url);
                             firebaseDatabase.getReference("Orders").child(key).setValue(orderFirebase);
                             firebaseDatabase.getReference("UserOrder").child(FirebaseAuth.getInstance().getUid()).child(key).setValue(true);
+                            firebaseDatabase.getReference("OrderMetadata").child(FirebaseAuth.getInstance().getUid()).child(key).setValue(new OrderMetadata(getFoodName(),"waiting",totalBill));
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -153,6 +155,16 @@ public class GetUserLocation extends FragmentActivity implements OnMapReadyCallb
                     }
                 });
 
+    }
+
+    String getFoodName()
+    {
+        StringBuilder stringBuilder=new StringBuilder();
+        for(int i=0;i<foodItems.size();i++)
+        {
+            stringBuilder.append(foodItems.get(i).getFoodItemTitle()+", ");
+        }
+        return stringBuilder.toString();
     }
 
 
