@@ -25,7 +25,6 @@ import com.ubereat.world.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -56,11 +55,10 @@ public class FoodDisplayActivity extends AppCompatActivity implements OnListFrag
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                onCartClick();
             }
         });
-
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.food_display_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new FoodDisplayAdapter(foodItems, this, this);
@@ -129,15 +127,15 @@ public class FoodDisplayActivity extends AppCompatActivity implements OnListFrag
     @Override
     public void onListFragmentInteraction(Bundle details, String action, boolean isFabClicked) {
 
-        FoodItem foodItem= Parcels.unwrap(details.getParcelable("FoodItem"));
+        FoodItem foodItem= details.getParcelable("FoodItem");
         orderList.add(foodItem);
 
     }
 
     public void onCartClick()
     {
-        Intent i= new Intent();
-      //  i.putParcelableArrayListExtra("orderList",Parcels.wrap(orderList))
+        Intent i= new Intent(this,DisplayOrder.class);
+        i.putParcelableArrayListExtra("orderList",orderList);
         startActivity(i);
     }
 }

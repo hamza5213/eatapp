@@ -2,6 +2,7 @@ package com.ubereat.world.Activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -36,6 +37,8 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 
 import ModelClasses.FoodItemFirebase;
+import io.nlopez.smartlocation.OnLocationUpdatedListener;
+import io.nlopez.smartlocation.SmartLocation;
 
 public class AddFoodActivity extends AppCompatActivity implements IPickResult {
 
@@ -67,6 +70,7 @@ public class AddFoodActivity extends AppCompatActivity implements IPickResult {
         price=findViewById(R.id.add_food_price);
         AndroidNetworking.initialize(getApplicationContext());
         foodItemRef= FirebaseDatabase.getInstance().getReference().child("FoodItems");
+
     }
     public void onHighSpiceClick(View view)
     {

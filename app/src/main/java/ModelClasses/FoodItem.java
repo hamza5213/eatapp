@@ -1,13 +1,13 @@
 package ModelClasses;
 
 
-import org.parceler.Parcel;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Created by hamza on 02-Jul-18.
  */
-@Parcel
-public class FoodItem {
+public class FoodItem implements Parcelable {
     String foodItemTitle;
     long foodItemPrice;
     String foodItemDescription;
@@ -64,4 +64,38 @@ public class FoodItem {
     public void setfID(String fID) {
         this.fID = fID;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.foodItemTitle);
+        dest.writeLong(this.foodItemPrice);
+        dest.writeString(this.foodItemDescription);
+        dest.writeString(this.spiceLevel);
+        dest.writeString(this.fID);
+    }
+
+    protected FoodItem(Parcel in) {
+        this.foodItemTitle = in.readString();
+        this.foodItemPrice = in.readLong();
+        this.foodItemDescription = in.readString();
+        this.spiceLevel = in.readString();
+        this.fID = in.readString();
+    }
+
+    public static final Parcelable.Creator<FoodItem> CREATOR = new Parcelable.Creator<FoodItem>() {
+        @Override
+        public FoodItem createFromParcel(Parcel source) {
+            return new FoodItem(source);
+        }
+
+        @Override
+        public FoodItem[] newArray(int size) {
+            return new FoodItem[size];
+        }
+    };
 }
