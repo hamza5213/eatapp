@@ -5,99 +5,86 @@
     android:layout_height="300dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardBackgroundColor="#ffffff">
-    <LinearLayout
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="339dp"
         android:orientation="vertical">
-        <android.support.constraint.ConstraintLayout
+
+        <ImageView
+            android:id="@+id/food_display_Image"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3">
+            android:layout_height="216dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/sandwich"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/food_display_Image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/sandwich"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/food_display_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/montserrat"
+            android:text="$120.00"
+            android:textColor="@color/cardview_light_background"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="173dp" />
 
-            <TextView
-                android:id="@+id/food_display_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginEnd="16dp"
-                android:text="$120.00"
-                android:fontFamily="@font/montserrat"
-                android:textColor="@color/cardview_light_background"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:typeface="normal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/food_display_title"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="220dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Chicken Tikka"
+            android:textColor="@color/fui_bgEmail"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/food_display_description"
+            android:layout_width="279dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/montserrat"
+            android:text="Grilled chicken with original Pakistani flavour"
+            android:textAlignment="textStart"
+            android:textColor="@color/fui_bgEmail"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/food_display_title" />
 
-        </android.support.constraint.ConstraintLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <ImageView
+            android:id="@+id/food_display_spiceLevel"
+            android:layout_width="29dp"
+            android:layout_height="33dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="4dp"
+            android:src="@drawable/fire"
+            app:layout_constraintStart_toEndOf="@+id/food_display_title"
+            app:layout_constraintTop_toBottomOf="@+id/food_display_Image" />
+
+        <ImageButton
+            android:id="@+id/food_dispaly_add"
+            android:layout_width="51dp"
+            android:layout_height="51dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="232dp"
             android:layout_weight="1"
-            android:orientation="horizontal">
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3">
+            android:background="@drawable/ic_add_circle_white_24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/food_display_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:fontFamily="@font/montserrat"
-                android:text="Chicken Tikka"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/food_display_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:fontFamily="@font/montserrat"
-                android:text="Grilled chicken with orignal Pakistani flavour"
-                android:textAlignment="textStart"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/food_display_title" />
-
-            <ImageView
-                android:id="@+id/food_display_spiceLevel"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/fire"
-                app:layout_constraintStart_toEndOf="@+id/food_display_title"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
-
-            <ImageButton
-                android:id="@+id/food_dispaly_add"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/outline_add_circle_black_36" />
-
-        </LinearLayout>
-
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
 
 </android.support.v7.widget.CardView>
