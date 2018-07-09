@@ -66,7 +66,8 @@
             android:name=".Activity.MyOrders"
             android:label="@string/title_activity_my_orders"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activity.OrderDetail"></activity>
+        <activity android:name=".Activity.OrderDetail" />
+        <activity android:name=".Activity.OwnerScreen"></activity>
     </application>
 
 </manifest>
