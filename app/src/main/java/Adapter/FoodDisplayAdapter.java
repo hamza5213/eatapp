@@ -16,10 +16,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ubereat.world.R;
 import Utility.MyAppGlideModule;
-
-import org.parceler.Parcel;
-import org.parceler.Parcels;
-
 import java.util.ArrayList;
 
 import Interfaces.OnListFragmentInteractionListener;
@@ -61,7 +57,7 @@ public class FoodDisplayAdapter extends RecyclerView.Adapter<FoodDisplayAdapter.
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putParcelable("FoodItem", Parcels.wrap(mValues.get(position)));
+                bundle.putParcelable("FoodItem", mValues.get(position));
                 mListener.onListFragmentInteraction(bundle, "foodItem", true);
             }
         });
