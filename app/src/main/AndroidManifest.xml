@@ -28,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.UserProfileActivity"/>
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.AddFoodActivity" />
         <activity
@@ -45,6 +46,8 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/picker_provider_paths" />
         </provider>
+
+
 
         <activity android:name=".Activity.DisplayOrder" />
         <!--
@@ -67,7 +70,8 @@
             android:label="@string/title_activity_my_orders"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.OrderDetail" />
-        <activity android:name=".Activity.OwnerScreen"></activity>
+        <activity android:name=".Activity.OwnerScreen" />
+        <activity android:name=".Activity.RiderMainActivity"></activity>
     </application>
 
 </manifest>

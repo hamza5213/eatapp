@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
+
+    <belka.us.androidtoggleswitch.widgets.ToggleSwitch
+        android:layout_width="117dp"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        custom:activeBgColor="@color/add_project_colour"
+        custom:activeTextColor="@android:color/white"
+        custom:inactiveBgColor="@android:color/white"
+        custom:inactiveTextColor="@android:color/black"
+        custom:separatorColor="@color/gray_very_light"
+        custom:textToggleLeft="Waiting"
+        custom:textToggleRight="InProgress" />
+</android.support.constraint.ConstraintLayout>

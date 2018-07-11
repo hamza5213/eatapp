@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.androidnetworking.AndroidNetworking;
@@ -37,6 +39,7 @@ public class FoodDisplayActivity extends AppCompatActivity implements OnListFrag
 
     DatabaseReference foodItemRef;
     ArrayList<FoodItem> foodItems;
+    ArrayList<Boolean> marked;
     String acessToken="3d8a264f7a584f93be5fbb79d6572f8f";
     FoodDisplayAdapter adapter;
     ArrayList<FoodItem> orderList;
@@ -48,20 +51,13 @@ public class FoodDisplayActivity extends AppCompatActivity implements OnListFrag
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         foodItems=new ArrayList<>();
+        marked=new ArrayList<>();
         AndroidNetworking.initialize(getApplicationContext());
         orderList=new ArrayList<>();
         fetchFoodItems();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                onCartClick();
-            }
-        });
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.food_display_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new FoodDisplayAdapter(foodItems, this, this);
+        adapter = new FoodDisplayAdapter(foodItems, this, this,false,marked);
         recyclerView.setAdapter(adapter);
     }
 
@@ -88,6 +84,7 @@ public class FoodDisplayActivity extends AppCompatActivity implements OnListFrag
                             String foodDescription=object.getString("description");
                             String fid=object.getString("id");
                             foodItems.add(new FoodItem(foodTitle,foodItemFirebase.getPrice(),foodDescription,foodItemFirebase.getSpiceLevel(),fid));
+                            marked.add(false);
                             adapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -127,10 +124,33 @@ public class FoodDisplayActivity extends AppCompatActivity implements OnListFrag
     @Override
     public void onListFragmentInteraction(Bundle details, String action, boolean isFabClicked) {
 
-        FoodItem foodItem= details.getParcelable("FoodItem");
-        orderList.add(foodItem);
+        int position=details.getInt("position");
+        if(marked.get(position)) {
+            orderList.add(foodItems.get(position));
+        }
+        else
+        {
+            orderList.remove(foodItems.get(position));
+        }
 
     }
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.cart,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.order_display_cart)
+        {
+            onCartClick();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     public void onCartClick()
     {

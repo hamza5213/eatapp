@@ -80,7 +80,7 @@ public class GetUserLocation extends FragmentActivity implements OnMapReadyCallb
         Intent temp= getIntent();
         foodItems=temp.getParcelableArrayListExtra("orderItems");
         totalBill=temp.getLongExtra("totalBill",10);
-        comments="Please be on Time";
+        comments=temp.getStringExtra("instruction");
 
 
 
@@ -142,7 +142,11 @@ public class GetUserLocation extends FragmentActivity implements OnMapReadyCallb
                             OrderFirebase orderFirebase=new OrderFirebase(foodItems,totalBill,location.getLongitude(),location.getLatitude(),url);
                             firebaseDatabase.getReference("Orders").child(key).setValue(orderFirebase);
                            // firebaseDatabase.getReference("UserOrder").child(FirebaseAuth.getInstance().getUid()).child(key).setValue(true);
-                            firebaseDatabase.getReference("OrderMetadata").child(FirebaseAuth.getInstance().getUid()).child(key).setValue(new OrderMetadata(getFoodName(),"waiting",totalBill));
+                            firebaseDatabase.getReference("OrderMetadata").child(FirebaseAuth.getInstance().getUid()).child(key).setValue(new OrderMetadata(getFoodName(),"waiting",totalBill,""));
+                            firebaseDatabase.getReference("OrderMetadata").child("Owner").child(key).setValue(new OrderMetadata(getFoodName(),"waiting",totalBill,""));
+                            Intent intent=new Intent(GetUserLocation.this,MyOrders.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -164,6 +168,7 @@ public class GetUserLocation extends FragmentActivity implements OnMapReadyCallb
         {
             stringBuilder.append(foodItems.get(i).getFoodItemTitle()+", ");
         }
+        stringBuilder.replace(stringBuilder.lastIndexOf(","),stringBuilder.length(),".");
         return stringBuilder.toString();
     }
 

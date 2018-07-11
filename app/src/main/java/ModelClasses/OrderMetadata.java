@@ -8,11 +8,13 @@ public class OrderMetadata {
     String foodNames;
     String status;
     long totalBill;
+    String riderId;
 
-    public OrderMetadata(String foodNames, String status, long totalBill) {
+    public OrderMetadata(String foodNames, String status, long totalBill, String riderId) {
         this.foodNames = foodNames;
         this.status = status;
         this.totalBill = totalBill;
+        this.riderId = riderId;
     }
 
     public OrderMetadata() {
@@ -40,5 +42,13 @@ public class OrderMetadata {
 
     public void setTotalBill(long totalBill) {
         this.totalBill = totalBill;
+    }
+
+    public String getRiderId() {
+        return riderId;
+    }
+
+    public void setRiderId(String riderId) {
+        this.riderId = riderId;
     }
 }

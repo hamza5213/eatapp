@@ -51,6 +51,7 @@ public class OrderDisplayAdapter extends RecyclerView.Adapter<OrderDisplayAdapte
             holder.foodItem=mValues.get(position);
             holder.mFoodTitle.setText(mValues.get(position).getFoodItemTitle());
             holder.mFoodDescription.setText(mValues.get(position).getFoodItemDescription());
+            holder.mFoodPrice.setText("$"+String.valueOf(mValues.get(position).getFoodItemPrice()));
             StorageReference ref=storage.getReference().child("FoodPic/"+mValues.get(position).getfID()+".jpg");
             Glide.with(c.getApplicationContext()).load(ref).into(holder.mFoodPicture);
             }
@@ -68,6 +69,7 @@ public class OrderDisplayAdapter extends RecyclerView.Adapter<OrderDisplayAdapte
         public final ImageView mFoodPicture;
         public final TextView mFoodTitle;
         public final TextView mFoodDescription;
+        public final TextView mFoodPrice;
         public FoodItem foodItem;
 
 
@@ -77,6 +79,7 @@ public class OrderDisplayAdapter extends RecyclerView.Adapter<OrderDisplayAdapte
             mFoodPicture= view.findViewById(R.id.order_detail_foodImage);
             mFoodTitle = view.findViewById(R.id.order_detail_title);
             mFoodDescription=view.findViewById(R.id.order_detail_description);
+            mFoodPrice=view.findViewById(R.id.order_details_price);
         }
     }
 

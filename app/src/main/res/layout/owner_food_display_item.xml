@@ -4,10 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="300dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="#ffffff"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    >
+    app:cardBackgroundColor="#ffffff">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -76,28 +73,6 @@
             android:src="@drawable/fire"
             app:layout_constraintStart_toEndOf="@+id/food_display_title"
             app:layout_constraintTop_toBottomOf="@+id/food_display_Image" />
-
-        <ImageButton
-            android:id="@+id/food_dispaly_add"
-            android:layout_width="51dp"
-            android:layout_height="51dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="232dp"
-            android:layout_weight="1"
-            android:background="@drawable/ic_add_circle_white_24dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/food_display_done"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/outline_done_white_48dp"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="@id/food_display_Image"
-            app:layout_constraintTop_toTopOf="@id/food_display_Image" />
 
     </android.support.constraint.ConstraintLayout>
 

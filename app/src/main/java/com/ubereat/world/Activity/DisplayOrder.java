@@ -7,6 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.ubereat.world.R;
 import java.util.ArrayList;
@@ -20,6 +23,9 @@ public class DisplayOrder extends AppCompatActivity implements OnListFragmentInt
 
     ArrayList<FoodItem>foodItems;
     OrderDisplayAdapter adapter;
+    EditText instructions;
+    TextView totalBillView;
+
     long totalBill;
 
     @Override
@@ -36,30 +42,31 @@ public class DisplayOrder extends AppCompatActivity implements OnListFragmentInt
         {
             totalBill+=foodItems.get(i).getFoodItemPrice();
         }
+        instructions=findViewById(R.id.order_disaply_instruction);
+        totalBillView=findViewById(R.id.order_display_totalBill);
+        totalBillView.setText("$"+String.valueOf(totalBill));
+        findViewById(R.id.order_display_fab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String mInstruction=instructions.getText().toString();
+                if(mInstruction!="")
+                {
+                    Intent i=new Intent(DisplayOrder.this,GetUserLocation.class);
+                    i.putParcelableArrayListExtra("orderItems",foodItems);
+                    i.putExtra("totalBill",totalBill);
+                    i.putExtra("instruction",mInstruction);
+                    startActivity(i);
+                }
+            }
+        });
     }
 
     @Override
     public void onListFragmentInteraction(Bundle details, String action, boolean isFabClicked) {
-        FoodItem  foodItem= details.getParcelable("orderItem");
+        /*FoodItem  foodItem= details.getParcelable("orderItem");
         foodItems.remove(foodItem);
-        adapter.notifyDataSetChanged();
+        adapter.notifyDataSetChanged();*/
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.cart,menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==R.id.order_display_cart)
-        {
-            Intent intent=new Intent(this,GetUserLocation.class);
-            intent.putParcelableArrayListExtra("orderItems",foodItems);
-            intent.putExtra("totalBill",totalBill);
-            startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }
