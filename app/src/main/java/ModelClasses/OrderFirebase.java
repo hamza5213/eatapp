@@ -21,6 +21,9 @@ public class OrderFirebase {
         this.url = url;
     }
 
+    public OrderFirebase() {
+    }
+
     public ArrayList<FoodItem> getFoodItems() {
         return foodItems;
     }

@@ -143,7 +143,7 @@ public class GetUserLocation extends FragmentActivity implements OnMapReadyCallb
                             firebaseDatabase.getReference("Orders").child(key).setValue(orderFirebase);
                            // firebaseDatabase.getReference("UserOrder").child(FirebaseAuth.getInstance().getUid()).child(key).setValue(true);
                             firebaseDatabase.getReference("OrderMetadata").child(FirebaseAuth.getInstance().getUid()).child(key).setValue(new OrderMetadata(getFoodName(),"waiting",totalBill,""));
-                            firebaseDatabase.getReference("OrderMetadata").child("Owner").child(key).setValue(new OrderMetadata(getFoodName(),"waiting",totalBill,""));
+                            firebaseDatabase.getReference("OwnerOrders").child("Pending").child(key).setValue(FirebaseAuth.getInstance().getUid());
                             Intent intent=new Intent(GetUserLocation.this,MyOrders.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);

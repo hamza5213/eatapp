@@ -13,6 +13,9 @@ public class LocationModel {
         this.latitude = latitude;
     }
 
+    public LocationModel() {
+    }
+
     public double getLongitude() {
         return longitude;
     }

@@ -26,6 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import Adapter.OrderDetailAdapter;
+import Adapter.OrderDisplayAdapter;
 import Interfaces.OnListFragmentInteractionListener;
 import ModelClasses.Order;
 import ModelClasses.OrderFirebase;
@@ -44,7 +45,7 @@ public class OrderDetail extends AppCompatActivity implements OnListFragmentInte
     TextView totalBill;
     TextView description;
     Spinner riderSpinner;
-    OrderDetailAdapter adapter;
+    OrderDisplayAdapter adapter;
     ArrayList<User>riders;
     ArrayAdapter<User>riderAdapter;
     User client;
@@ -55,16 +56,17 @@ public class OrderDetail extends AppCompatActivity implements OnListFragmentInte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
         orderId=getIntent().getStringExtra("orderId");
-        fetchOrder(orderId);
         firebaseDatabase=FirebaseDatabase.getInstance();
         description=findViewById(R.id.order_detail_description);
         totalBill=findViewById(R.id.order_detail_TotalBill);
         dateTime=findViewById(R.id.order_detail_dateTime);
         clientName=findViewById(R.id.order_detail_UserName);
         address=findViewById(R.id.order_detail_address);
+        riders=new ArrayList<>();
         riderSpinner=findViewById(R.id.order_details_rider_spinner);
         riderAdapter=new ArrayAdapter<User>(this, android.R.layout.simple_spinner_dropdown_item, riders);
         riderSpinner.setAdapter(riderAdapter);
+        fetchOrder(orderId);
 
 
     }
@@ -113,9 +115,9 @@ public class OrderDetail extends AppCompatActivity implements OnListFragmentInte
 
     void updateUI()
     {
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.display_order_rv);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.order_deatils_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new OrderDetailAdapter(order.getFoodItems(),this, this);
+        adapter = new OrderDisplayAdapter(order.getFoodItems(),this, this);
         recyclerView.setAdapter(adapter);
         dateTime.setText(order.getTime());
         totalBill.setText("$"+String.valueOf(order.getTotalBill()));
@@ -205,6 +207,9 @@ public class OrderDetail extends AppCompatActivity implements OnListFragmentInte
                             String key=object.getString("id");
                             RiderTaskFirebase riderTaskFirebase =new RiderTaskFirebase(client.getName(),client.getUserId(),order.getLongitude(),order.getLatitude(),order.getTotalBill(),url);
                             firebaseDatabase.getReference("RiderTasks").child(((User)riderSpinner.getSelectedItem()).getUserId()).child(key).setValue(riderTaskFirebase);
+                            firebaseDatabase.getReference("OwnerOrders").child("Pending").child(orderId).removeValue();
+                            firebaseDatabase.getReference("OwnerOrders").child("OnTheWay").child(orderId).setValue(client.getUserId());
+                            finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
