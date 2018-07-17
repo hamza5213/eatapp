@@ -98,7 +98,7 @@ public class UserOrderTracking extends FragmentActivity implements OnMapReadyCal
            drawable.draw(canvas);
        customMarkerView.draw(canvas);
        mMap.addMarker(new MarkerOptions().icon(BitmapDescriptorFactory.fromBitmap(returnedBitmap)).position(l).anchor(0.5f,0.5f));
-       mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(l, 16));
+       mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(l, 18));
 
    }
 

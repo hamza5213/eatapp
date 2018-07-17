@@ -7,15 +7,17 @@ import java.util.ArrayList;
  */
 
 public class OrderFirebase {
-    ArrayList<FoodItem> foodItems;
+    ArrayList<OrderDItem> orderDItems;
     double totalBill;
+    String address;
     double longitude;
     double latitude;
     String url;
 
-    public OrderFirebase(ArrayList<FoodItem> foodItems, double totalBill, double longitude, double latitude, String url) {
-        this.foodItems = foodItems;
+    public OrderFirebase(ArrayList<OrderDItem> orderDItems, double totalBill, String address, double longitude, double latitude, String url) {
+        this.orderDItems = orderDItems;
         this.totalBill = totalBill;
+        this.address = address;
         this.longitude = longitude;
         this.latitude = latitude;
         this.url = url;
@@ -24,12 +26,12 @@ public class OrderFirebase {
     public OrderFirebase() {
     }
 
-    public ArrayList<FoodItem> getFoodItems() {
-        return foodItems;
+    public ArrayList<OrderDItem> getOrderDItems() {
+        return orderDItems;
     }
 
-    public void setFoodItems(ArrayList<FoodItem> foodItems) {
-        this.foodItems = foodItems;
+    public void setOrderDItems(ArrayList<OrderDItem> orderDItems) {
+        this.orderDItems = orderDItems;
     }
 
     public double getTotalBill() {
@@ -62,5 +64,13 @@ public class OrderFirebase {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

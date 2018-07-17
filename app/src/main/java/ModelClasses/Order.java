@@ -7,30 +7,32 @@ import java.util.ArrayList;
  */
 
 public class Order {
-    ArrayList<FoodItem> foodItems;
+    ArrayList<OrderDItem> orderItems;
     double totalBill;
     double longitude;
     double latitude;
     String uid;
     String description;
     String time;
+    String address;
 
-    public Order(ArrayList<FoodItem> foodItems, double totalBill, double longitude, double latitude, String uid, String description, String time) {
-        this.foodItems = foodItems;
+    public Order(ArrayList<OrderDItem> orderItems, double totalBill, double longitude, double latitude, String uid, String description, String time, String address) {
+        this.orderItems = orderItems;
         this.totalBill = totalBill;
         this.longitude = longitude;
         this.latitude = latitude;
         this.uid = uid;
         this.description = description;
         this.time = time;
+        this.address = address;
     }
 
-    public ArrayList<FoodItem> getFoodItems() {
-        return foodItems;
+    public ArrayList<OrderDItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setFoodItems(ArrayList<FoodItem> foodItems) {
-        this.foodItems = foodItems;
+    public void setOrderItems(ArrayList<OrderDItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public double getTotalBill() {
@@ -80,5 +82,13 @@ public class Order {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

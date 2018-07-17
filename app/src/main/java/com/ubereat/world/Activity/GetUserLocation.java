@@ -70,7 +70,7 @@ public class GetUserLocation extends FragmentActivity implements OnMapReadyCallb
                     nextIntent.putExtra("Longitude",location.getLongitude());
                     nextIntent.putExtra("Latitude",location.getLatitude());
                     startActivity(nextIntent);*/
-                   onCompleteOrder();
+                  // onCompleteOrder();
                 }
             }
         });
@@ -122,7 +122,7 @@ public class GetUserLocation extends FragmentActivity implements OnMapReadyCallb
         });
     }
 
-    void onCompleteOrder()
+   /* void onCompleteOrder()
     {
         AndroidNetworking.post("https://projectsapi.zoho.com/restapi/portal/tlxdml/projects/1265026000000020206/bugs/")
                 .addHeaders("Authorization", authToken)
@@ -172,5 +172,5 @@ public class GetUserLocation extends FragmentActivity implements OnMapReadyCallb
         return stringBuilder.toString();
     }
 
-
+*/
 }

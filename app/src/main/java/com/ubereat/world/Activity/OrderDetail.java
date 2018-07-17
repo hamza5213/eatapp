@@ -90,7 +90,7 @@ public class OrderDetail extends AppCompatActivity implements OnListFragmentInte
                                     String uId=object.getString("title");
                                     uId=uId.substring(19);
                                     String dateTime=object.getString("created_time_format");
-                                    order=new Order(orderFirebase.getFoodItems(),orderFirebase.getTotalBill(),orderFirebase.getLongitude(),orderFirebase.getLatitude(),uId,description,dateTime);
+                                    order=new Order(orderFirebase.getOrderDItems(),orderFirebase.getTotalBill(),orderFirebase.getLongitude(),orderFirebase.getLatitude(),uId,description,dateTime,orderFirebase.getAddress());
                                     fetchClient(uId);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -117,9 +117,10 @@ public class OrderDetail extends AppCompatActivity implements OnListFragmentInte
     {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.order_deatils_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new OrderDisplayAdapter(order.getFoodItems(),this, this);
+        adapter = new OrderDisplayAdapter(order.getOrderItems(),this, this);
         recyclerView.setAdapter(adapter);
         dateTime.setText(order.getTime());
+        address.setText(order.getAddress());
         totalBill.setText("$"+String.valueOf(order.getTotalBill()));
         description.setText(order.getDescription());
         clientName.setText(client.getName());
@@ -193,7 +194,7 @@ public class OrderDetail extends AppCompatActivity implements OnListFragmentInte
         AndroidNetworking.post("https://projectsapi.zoho.com/restapi/portal/tlxdml/projects/1265026000000020206/bugs/")
                 .addHeaders("Authorization", authToken)
                 .addBodyParameter("title",orderId)
-                .addBodyParameter("description","129 Mall Road")
+                .addBodyParameter("description",order.getAddress())
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override

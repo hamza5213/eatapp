@@ -11,12 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.firebase.ui.auth.data.model.User;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ubereat.world.R;
-import Utility.MyAppGlideModule;
+
+import ModelClasses.OrderDItem;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import Interfaces.OnListFragmentInteractionListener;
 import ModelClasses.FoodItem;
@@ -31,7 +33,7 @@ public class FoodDisplayAdapter extends RecyclerView.Adapter<FoodDisplayAdapter.
     Context c;
     OnListFragmentInteractionListener mListener;
     FirebaseStorage storage;
-    ArrayList<Boolean> marked;
+    ArrayList<OrderDItem> orderList;
     boolean ownerFlag;
 
 
@@ -43,13 +45,13 @@ public class FoodDisplayAdapter extends RecyclerView.Adapter<FoodDisplayAdapter.
         this.ownerFlag=ownerFlag;
     }
 
-    public FoodDisplayAdapter(ArrayList<FoodItem> items, Context context, OnListFragmentInteractionListener mListener,boolean ownerFlag,ArrayList<Boolean>marked) {
+    public FoodDisplayAdapter(ArrayList<FoodItem> items, Context context, OnListFragmentInteractionListener mListener, boolean ownerFlag, ArrayList<OrderDItem>orderList) {
         mValues = items;
         c = context;
         this.mListener = mListener;
         storage = FirebaseStorage.getInstance();
         this.ownerFlag=ownerFlag;
-        this.marked=marked;
+        this.orderList=orderList;
     }
 
 
@@ -108,6 +110,8 @@ public class FoodDisplayAdapter extends RecyclerView.Adapter<FoodDisplayAdapter.
         public final TextView mFoodPrice;
         public final ImageView mFoodSpice;
         public final ImageButton mFoodAdd;
+        public final ImageButton mFoodMinus;
+        public final TextView mFoodQuantity;
         public FoodItem foodItem;
 
 
@@ -120,6 +124,8 @@ public class FoodDisplayAdapter extends RecyclerView.Adapter<FoodDisplayAdapter.
             mFoodDescription=view.findViewById(R.id.food_display_description);
             mFoodSpice=view.findViewById(R.id.food_display_spiceLevel);
             mFoodAdd=view.findViewById(R.id.food_dispaly_add);
+            mFoodMinus=view.findViewById(R.id.food_dispaly_minus);
+            mFoodQuantity=view.findViewById(R.id.food_display_quantity);
         }
 
         @Override
@@ -132,19 +138,40 @@ public class FoodDisplayAdapter extends RecyclerView.Adapter<FoodDisplayAdapter.
             mFoodAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Bundle bundle = new Bundle();
-                    bundle.putInt("position", pos);
-                    if(!marked.get(pos)) {
-                        marked.set(pos,true);
-                        mFoodAdd.setImageResource(R.drawable.baseline_indeterminate_check_box_black_36dp);
-
+                    int index=orderList.indexOf(new OrderDItem(pos));
+                    if(index==-1)
+                    {
+                        orderList.add(new OrderDItem(mValues.get(pos),pos,1));
+                        mFoodQuantity.setText("1");
                     }
                     else
                     {
-                        marked.set(pos,false);
-                        mFoodAdd.setImageResource(R.drawable.ic_add_circle_white_24dp);
+                        int temp=orderList.get(index).getQuantity();
+                        mFoodQuantity.setText(String.valueOf(temp+1));
+                        orderList.get(index).setQuantity(temp+1);
                     }
-                    mListener.onListFragmentInteraction(bundle, "foodItem", true);
+                }
+            });
+            mFoodMinus.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int index=orderList.indexOf(new OrderDItem(pos));
+                    if(index!=-1)
+                    {
+                        int temp=orderList.get(index).getQuantity();
+                        temp--;
+                        if(temp<=0)
+                        {
+                            orderList.remove(index);
+                            mFoodQuantity.setText(String.valueOf(0));
+                        }
+                        else
+                        {
+                            orderList.get(index).setQuantity(temp);
+                            mFoodQuantity.setText(String.valueOf(temp));
+                        }
+                    }
+
                 }
             });
             String spicelevel=foodItem.getSpiceLevel();

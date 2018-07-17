@@ -16,9 +16,12 @@ import com.google.firebase.storage.StorageReference;
 import com.ubereat.world.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import Interfaces.OnListFragmentInteractionListener;
 import ModelClasses.FoodItem;
+import ModelClasses.Order;
+import ModelClasses.OrderDItem;
 
 /**
  * Created by hamza on 04-Jul-18.
@@ -26,12 +29,12 @@ import ModelClasses.FoodItem;
 
 public class OrderDisplayAdapter extends RecyclerView.Adapter<OrderDisplayAdapter.ViewHolder>{
 
-    private final ArrayList<FoodItem> mValues;
+    private final ArrayList<OrderDItem> mValues;
             Context c;
             OnListFragmentInteractionListener mListener;
             FirebaseStorage storage;
 
-    public OrderDisplayAdapter(ArrayList<FoodItem> items,Context context,OnListFragmentInteractionListener mListener){
+    public OrderDisplayAdapter(ArrayList<OrderDItem> items,Context context,OnListFragmentInteractionListener mListener){
             mValues=items;
             c=context;
             this.mListener=mListener;
@@ -48,11 +51,12 @@ public class OrderDisplayAdapter extends RecyclerView.Adapter<OrderDisplayAdapte
 
     @Override
     public void onBindViewHolder(final ViewHolder holder,final int position){
-            holder.foodItem=mValues.get(position);
-            holder.mFoodTitle.setText(mValues.get(position).getFoodItemTitle());
-            holder.mFoodDescription.setText(mValues.get(position).getFoodItemDescription());
-            holder.mFoodPrice.setText("$"+String.valueOf(mValues.get(position).getFoodItemPrice()));
-            StorageReference ref=storage.getReference().child("FoodPic/"+mValues.get(position).getfID()+".jpg");
+            holder.orderItem=mValues.get(position);
+            holder.mFoodTitle.setText(mValues.get(position).getFoodItem().getFoodItemTitle());
+            holder.mFoodDescription.setText(mValues.get(position).getFoodItem().getFoodItemDescription());
+            holder.mFoodPrice.setText("$"+String.valueOf(mValues.get(position).getFoodItem().getFoodItemPrice()));
+            holder.mFoodCount.setText(String.valueOf(mValues.get(position).getQuantity()));
+            StorageReference ref=storage.getReference().child("FoodPic/"+mValues.get(position).getFoodItem().getfID()+".jpg");
             Glide.with(c.getApplicationContext()).load(ref).into(holder.mFoodPicture);
             }
 
@@ -70,7 +74,8 @@ public class OrderDisplayAdapter extends RecyclerView.Adapter<OrderDisplayAdapte
         public final TextView mFoodTitle;
         public final TextView mFoodDescription;
         public final TextView mFoodPrice;
-        public FoodItem foodItem;
+        public final TextView mFoodCount;
+        public OrderDItem orderItem;
 
 
         public ViewHolder(View view) {
@@ -80,6 +85,7 @@ public class OrderDisplayAdapter extends RecyclerView.Adapter<OrderDisplayAdapte
             mFoodTitle = view.findViewById(R.id.order_detail_title);
             mFoodDescription=view.findViewById(R.id.order_detail_description);
             mFoodPrice=view.findViewById(R.id.order_details_price);
+            mFoodCount=view.findViewById(R.id.order_detail_quantity);
         }
     }
 
