@@ -1,12 +1,15 @@
 package com.ubereat.world.Activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -33,6 +36,7 @@ import ModelClasses.OrderFirebase;
 import ModelClasses.RiderTaskFirebase;
 import ModelClasses.User;
 import ModelClasses.UserProfile;
+import dmax.dialog.SpotsDialog;
 
 public class OrderDetail extends AppCompatActivity implements OnListFragmentInteractionListener {
 
@@ -44,28 +48,56 @@ public class OrderDetail extends AppCompatActivity implements OnListFragmentInte
     TextView dateTime;
     TextView totalBill;
     TextView description;
+    LinearLayout lRider;
+    LinearLayout lClientName;
+    LinearLayout lStatus;
+    LinearLayout main;
+    TextView status;
+    boolean ownerFlag;
     Spinner riderSpinner;
     OrderDisplayAdapter adapter;
     ArrayList<User>riders;
     ArrayAdapter<User>riderAdapter;
     User client;
     String orderId;
+    android.app.AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
-        orderId=getIntent().getStringExtra("orderId");
+        Intent i=getIntent();
+        main=findViewById(R.id.order_detail_main);
+        main.setVisibility(View.INVISIBLE);
+        alertDialog= new SpotsDialog.Builder().setContext(this).build();
+        alertDialog.show();
+        orderId=i.getStringExtra("orderId");
+        ownerFlag=i.getBooleanExtra("ownerFlag",true);
         firebaseDatabase=FirebaseDatabase.getInstance();
         description=findViewById(R.id.order_detail_description);
         totalBill=findViewById(R.id.order_detail_TotalBill);
         dateTime=findViewById(R.id.order_detail_dateTime);
         clientName=findViewById(R.id.order_detail_UserName);
+        status=findViewById(R.id.order_detail_status);
+        status.setText(i.getStringExtra("status"));
         address=findViewById(R.id.order_detail_address);
-        riders=new ArrayList<>();
-        riderSpinner=findViewById(R.id.order_details_rider_spinner);
-        riderAdapter=new ArrayAdapter<User>(this, android.R.layout.simple_spinner_dropdown_item, riders);
-        riderSpinner.setAdapter(riderAdapter);
+        lRider=findViewById(R.id.order_details_lrider);
+        lStatus=findViewById(R.id.order_detail_lStatus);
+
+        lClientName=findViewById(R.id.order_deatils_lClientName);
+        if(ownerFlag) {
+            lClientName.setVisibility(View.VISIBLE);
+            lRider.setVisibility(View.VISIBLE);
+            riders = new ArrayList<>();
+            riderSpinner = findViewById(R.id.order_details_rider_spinner);
+            riderAdapter = new ArrayAdapter<User>(this, android.R.layout.simple_spinner_dropdown_item, riders);
+            riderSpinner.setAdapter(riderAdapter);
+        }
+        else
+        {
+            lClientName.setVisibility(View.GONE);
+            lRider.setVisibility(View.GONE);
+        }
         fetchOrder(orderId);
 
 
@@ -124,7 +156,14 @@ public class OrderDetail extends AppCompatActivity implements OnListFragmentInte
         totalBill.setText("$"+String.valueOf(order.getTotalBill()));
         description.setText(order.getDescription());
         clientName.setText(client.getName());
-        fetchRiders();
+        if(ownerFlag) {
+            fetchRiders();
+        }
+        else
+        {
+            alertDialog.dismiss();
+            main.setVisibility(View.VISIBLE);
+        }
     }
     void fetchClient(final String uId)
     {
@@ -158,6 +197,8 @@ public class OrderDetail extends AppCompatActivity implements OnListFragmentInte
                         fetchRiderData(snapshot.getKey());
                     }
                 }
+                alertDialog.dismiss();
+                main.setVisibility(View.VISIBLE);
 
             }
 

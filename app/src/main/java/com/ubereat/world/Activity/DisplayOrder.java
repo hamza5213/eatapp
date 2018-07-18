@@ -74,7 +74,7 @@ public class DisplayOrder extends AppCompatActivity implements OnListFragmentInt
         instructions=findViewById(R.id.order_disaply_instruction);
         totalBillView=findViewById(R.id.order_display_totalBill);
         totalBillView.setText("$"+String.valueOf(totalBill));
-        findViewById(R.id.order_display_fab).setOnClickListener(new View.OnClickListener() {
+        /*findViewById(R.id.order_display_fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String mInstruction=instructions.getText().toString();
@@ -85,10 +85,10 @@ public class DisplayOrder extends AppCompatActivity implements OnListFragmentInt
                     i.putParcelableArrayListExtra("orderItems",foodItems);
                     i.putExtra("totalBill",totalBill);
                     i.putExtra("instruction",mInstruction);
-                    startActivity(i);*/
+                    startActivity(i);
                 }
             }
-        });
+        });*/
     }
 
     @Override
@@ -124,7 +124,7 @@ public class DisplayOrder extends AppCompatActivity implements OnListFragmentInt
     }
 
 
-    void onCompleteOrder()
+   public  void onCompleteOrder(View view)
     {
         String mInstruction=instructions.getText().toString();
         AndroidNetworking.post("https://projectsapi.zoho.com/restapi/portal/tlxdml/projects/1265026000000020206/bugs/")

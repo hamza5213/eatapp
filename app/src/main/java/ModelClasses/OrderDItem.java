@@ -18,6 +18,9 @@ public class OrderDItem implements Parcelable {
         this.quantity = quantity;
     }
 
+    public OrderDItem() {
+    }
+
     public OrderDItem(int position) {
         this.position = position;
     }

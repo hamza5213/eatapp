@@ -98,7 +98,13 @@ public class MyOrders extends AppCompatActivity implements OnListFragmentInterac
     public void onListFragmentInteraction(Bundle details, String action, boolean isFabClicked) {
 
         int position=details.getInt("position");
-        if(orderMetadataArrayList.get(position).getStatus().equals("On The Way"))
+        Intent intent=new Intent(this,OrderDetail.class);
+        intent.putExtra("orderId",orderIDs.get(position));
+        intent.putExtra("ownerFlag",true);
+        intent.putExtra("status",orderMetadataArrayList.get(position).getStatus());
+        startActivity(intent);
+
+        /*if(orderMetadataArrayList.get(position).getStatus().equals("On The Way"))
         {
             Intent i =new Intent(this,UserOrderTracking.class);
             i.putExtra("riderId",orderMetadataArrayList.get(position).getRiderId());
@@ -108,7 +114,8 @@ public class MyOrders extends AppCompatActivity implements OnListFragmentInterac
         else
         {
             DisplayAlert("Please wait as your Order is in progress");
-        }
+        }*/
+
 
 
     }

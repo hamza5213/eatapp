@@ -65,7 +65,7 @@ public class OwnerFoodDisplay extends Fragment {
         fetchFoodItems();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.ownerFoodDisplay_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        adapter = new FoodDisplayAdapter(foodItems, context, mListener,false);
+        adapter = new FoodDisplayAdapter(foodItems, context, mListener,true);
         recyclerView.setAdapter(adapter);
         view.findViewById(R.id.owner_food_display_fab).setOnClickListener(new View.OnClickListener() {
             @Override

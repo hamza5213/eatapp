@@ -26,7 +26,7 @@
                 android:textColor="@color/browser_actions_text_color"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@+id/textView6"
+                app:layout_constraintStart_toEndOf="@+id/order_detail_item_quantity"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -38,11 +38,11 @@
                 android:fontFamily="@font/open_sans"
                 android:text="Soft,creamy and juicy with curry and stuff "
                 android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/textView6"
+                app:layout_constraintStart_toEndOf="@+id/order_detail_item_quantity"
                 app:layout_constraintTop_toBottomOf="@+id/order_detail_item_title" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/order_detail_item_quantity"
                 android:layout_width="32dp"
                 android:layout_height="37dp"
                 android:layout_marginStart="16dp"
@@ -54,7 +54,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/order_detail_item_price"
                 android:layout_width="104dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="24dp"

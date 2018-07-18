@@ -141,6 +141,8 @@ public class OwnerOrders extends Fragment implements OnListFragmentInteractionLi
         int position=details.getInt("position");
         Intent i = new Intent(context,OrderDetail.class);
         i.putExtra("orderId",orderIds.get(position));
+        i.putExtra("ownerFlag",true);
+        i.putExtra("status",orderMetadataArrayList.get(position).getStatus());
         context.startActivity(i);
     }
 }

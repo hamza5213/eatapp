@@ -92,7 +92,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/totalBill" />
 
             <Button
-                android:id="@+id/email_sign_in_button"
+                android:id="@+id/display_order_done"
                 style="?android:textAppearanceSmall"
                 android:layout_width="262dp"
                 android:layout_height="wrap_content"
@@ -100,12 +100,54 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/button_rounded_corners"
+                android:onClick="onCompleteOrder"
                 android:text="@string/place_order"
                 android:textColor="@android:color/background_light"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/order_display_location" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/open_sans"
+                android:text="Address"
+                android:textColor="@android:color/black"
+                android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/order_disaply_instruction" />
+
+            <TextView
+                android:id="@+id/order_display_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/open_sans"
+                android:text="Click to add Location"
+                android:textSize="17sp"
+                app:layout_constraintEnd_toStartOf="@+id/order_display_addLocation"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <ImageButton
+                android:id="@+id/order_display_addLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="36dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/button_rounded_corners"
+                android:backgroundTint="@color/add_project_colour"
+                android:onClick="addLocation"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/order_disaply_instruction"
+                app:srcCompat="@drawable/baseline_add_location_white_36dp" />
         </android.support.constraint.ConstraintLayout>
 
     </ScrollView>
