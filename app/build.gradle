@@ -47,6 +47,7 @@ dependencies {
     compile 'us.belka:androidtoggleswitch:1.2.2'
     implementation "com.google.android.gms:play-services-places:15.0.1"
     compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
+    implementation 'com.github.mukeshsolanki:android-otpview-pinview:1.1.0'
 
 
     compile 'com.google.android.gms:play-services-location:15.0.1'
