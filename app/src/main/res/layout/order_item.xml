@@ -14,8 +14,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/order_detail_foodImage"
-            android:layout_width="87dp"
-            android:layout_height="97dp"
+            android:layout_width="111dp"
+            android:layout_height="123dp"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:src="@drawable/sandwich"
@@ -28,10 +28,10 @@
 
         <TextView
             android:id="@+id/order_detail_title"
-            android:layout_width="wrap_content"
+            android:layout_width="243dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/montserrat"
             android:text="Chicken Tikka"
             android:textColor="@color/browser_actions_text_color"
@@ -42,8 +42,8 @@
 
         <TextView
             android:id="@+id/order_detail_description"
-            android:layout_width="197dp"
-            android:layout_height="59dp"
+            android:layout_width="240dp"
+            android:layout_height="47dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:text="Soft,creamy and juicy with curry and stuff "
@@ -55,27 +55,12 @@
             android:id="@+id/order_details_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="68dp"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="35dp"
-            android:text="$50"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Rs 200"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/order_detail_quantity"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/order_detail_quantity"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="60dp"
-            android:text="2"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/order_detail_description"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/order_detail_foodImage"
+            app:layout_constraintTop_toBottomOf="@+id/order_detail_description" />
 
     </android.support.constraint.ConstraintLayout>
 

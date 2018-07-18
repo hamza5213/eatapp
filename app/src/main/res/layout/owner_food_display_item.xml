@@ -15,25 +15,30 @@
             android:id="@+id/food_display_Image"
             android:layout_width="match_parent"
             android:layout_height="216dp"
+            android:layout_marginTop="8dp"
+            android:tint="#6F000000"
             android:scaleType="fitCenter"
             android:src="@drawable/sandwich"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/food_display_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="172dp"
-            android:fontFamily="@font/montserrat"
-            android:text="$120.00"
-            android:textColor="@color/cardview_light_background"
-            android:textSize="30sp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="188dp"
+            android:background="@drawable/rounded_xml"
+            android:fontFamily="@font/open_sans"
+            android:gravity="center"
+            android:text="Rs 1500"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:typeface="normal"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -41,38 +46,37 @@
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="220dp"
-            android:fontFamily="@font/montserrat"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/open_sans"
             android:text="Chicken Tikka"
-            android:textColor="@color/fui_bgEmail"
-            android:textSize="22sp"
-            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/background_light"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/food_display_spiceLevel" />
 
         <TextView
             android:id="@+id/food_display_description"
-            android:layout_width="279dp"
+            android:layout_width="241dp"
             android:layout_height="41dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="@font/montserrat"
             android:text="Grilled chicken with original Pakistani flavour"
             android:textAlignment="textStart"
-            android:textColor="@color/fui_bgEmail"
+            android:textColor="@color/gray"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/food_display_title" />
+            app:layout_constraintTop_toBottomOf="@+id/food_display_Image" />
 
         <ImageView
             android:id="@+id/food_display_spiceLevel"
             android:layout_width="29dp"
             android:layout_height="33dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="132dp"
             android:src="@drawable/fire"
-            app:layout_constraintStart_toEndOf="@+id/food_display_title"
-            app:layout_constraintTop_toBottomOf="@+id/food_display_Image" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
