@@ -104,9 +104,14 @@ public class UserProfileActivity extends AppCompatActivity implements IPickResul
                // setResult(1);
                 //finish();
                 UserProfile userProfile;
-                if(toggleSwitch.getCheckedTogglePosition()==1) {
+                if(toggleSwitch.getCheckedTogglePosition()==2) {
                      userProfile = new UserProfile(Name.getText().toString(), firebaseUser.getPhoneNumber(), "rider");
+                     firebaseDatabase.getReference("Riders").child(firebaseUser.getUid()).setValue(true);
 
+                }
+                else if (toggleSwitch.getCheckedTogglePosition()==1)
+                {
+                    userProfile = new UserProfile(Name.getText().toString(), firebaseUser.getPhoneNumber(), "owner");
                 }
                 else
                 {

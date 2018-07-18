@@ -29,21 +29,22 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import Adapter.FoodDisplayAdapter;
 import Interfaces.OnListFragmentInteractionListener;
 import ModelClasses.FoodItem;
 import ModelClasses.FoodItemFirebase;
+import ModelClasses.OrderDItem;
 
 public class FoodDisplayActivity extends AppCompatActivity implements OnListFragmentInteractionListener {
 
     DatabaseReference foodItemRef;
     ArrayList<FoodItem> foodItems;
-    ArrayList<Boolean> marked;
-    String acessToken="3d8a264f7a584f93be5fbb79d6572f8f";
+    HashMap<String,Integer>counts;
+    String authToken="3d8a264f7a584f93be5fbb79d6572f8f";
     FoodDisplayAdapter adapter;
-    ArrayList<FoodItem> orderList;
-
+    ArrayList<OrderDItem> orderList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +52,13 @@ public class FoodDisplayActivity extends AppCompatActivity implements OnListFrag
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         foodItems=new ArrayList<>();
-        marked=new ArrayList<>();
+        counts=new HashMap<>();
         AndroidNetworking.initialize(getApplicationContext());
         orderList=new ArrayList<>();
         fetchFoodItems();
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.food_display_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new FoodDisplayAdapter(foodItems, this, this,false,marked);
+        adapter = new FoodDisplayAdapter(foodItems, this, this,false,orderList);
         recyclerView.setAdapter(adapter);
     }
 
@@ -71,7 +72,7 @@ public class FoodDisplayActivity extends AppCompatActivity implements OnListFrag
                 System.out.println(foodItemFirebase.getPrice());
 
                 AndroidNetworking.get(foodItemFirebase.getUrl())
-                .addHeaders("Authorization", acessToken)
+                .addHeaders("Authorization", authToken)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
@@ -84,7 +85,6 @@ public class FoodDisplayActivity extends AppCompatActivity implements OnListFrag
                             String foodDescription=object.getString("description");
                             String fid=object.getString("id");
                             foodItems.add(new FoodItem(foodTitle,foodItemFirebase.getPrice(),foodDescription,foodItemFirebase.getSpiceLevel(),fid));
-                            marked.add(false);
                             adapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -124,14 +124,14 @@ public class FoodDisplayActivity extends AppCompatActivity implements OnListFrag
     @Override
     public void onListFragmentInteraction(Bundle details, String action, boolean isFabClicked) {
 
-        int position=details.getInt("position");
+       /* int position=details.getInt("position");
         if(marked.get(position)) {
             orderList.add(foodItems.get(position));
         }
         else
         {
             orderList.remove(foodItems.get(position));
-        }
+        }*/
 
     }
 

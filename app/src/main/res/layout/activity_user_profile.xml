@@ -51,6 +51,7 @@
         android:layout_marginTop="59dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/UserProfileName"
+        custom:textToggleCenter="Owner"
         custom:textToggleLeft="Consumer"
         custom:textToggleRight="Rider" />
 

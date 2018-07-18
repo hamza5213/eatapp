@@ -1,4 +1,4 @@
-package Services;
+package com.ubereat.world.Activity.Services;
 
 import android.app.IntentService;
 import android.content.Context;
@@ -21,9 +21,9 @@ import io.nlopez.smartlocation.location.config.LocationParams;
  * Created by hamza on 10-Jul-18.
  */
 
-public class RiderLocation extends IntentService {
-    public RiderLocation() {
-        super("Rider Location");
+public class RiderService extends IntentService {
+    public RiderService() {
+        super("RiderLocation");
     }
 
     @Override

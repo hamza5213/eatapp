@@ -28,7 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.UserProfileActivity"/>
+        <activity android:name=".Activity.UserProfileActivity" />
         <activity android:name=".Activity.MainActivity" />
         <activity android:name=".Activity.AddFoodActivity" />
         <activity
@@ -46,9 +46,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/picker_provider_paths" />
         </provider>
-
-
-
+        <service android:name=".Activity.Services.RiderService"/>
         <activity android:name=".Activity.DisplayOrder" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -71,7 +69,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activity.OrderDetail" />
         <activity android:name=".Activity.OwnerScreen" />
-        <activity android:name=".Activity.RiderMainActivity"></activity>
+        <activity android:name=".Activity.RiderMainActivity" />
+        <activity
+            android:name=".Activity.UserOrderTracking"
+            android:label="@string/title_activity_user_order_tracking"></activity>
+
     </application>
+
+
 
 </manifest>

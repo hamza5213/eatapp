@@ -70,7 +70,7 @@ public class GetUserLocation extends FragmentActivity implements OnMapReadyCallb
                     nextIntent.putExtra("Longitude",location.getLongitude());
                     nextIntent.putExtra("Latitude",location.getLatitude());
                     startActivity(nextIntent);*/
-                   onCompleteOrder();
+                  // onCompleteOrder();
                 }
             }
         });
@@ -122,7 +122,7 @@ public class GetUserLocation extends FragmentActivity implements OnMapReadyCallb
         });
     }
 
-    void onCompleteOrder()
+   /* void onCompleteOrder()
     {
         AndroidNetworking.post("https://projectsapi.zoho.com/restapi/portal/tlxdml/projects/1265026000000020206/bugs/")
                 .addHeaders("Authorization", authToken)
@@ -143,7 +143,7 @@ public class GetUserLocation extends FragmentActivity implements OnMapReadyCallb
                             firebaseDatabase.getReference("Orders").child(key).setValue(orderFirebase);
                            // firebaseDatabase.getReference("UserOrder").child(FirebaseAuth.getInstance().getUid()).child(key).setValue(true);
                             firebaseDatabase.getReference("OrderMetadata").child(FirebaseAuth.getInstance().getUid()).child(key).setValue(new OrderMetadata(getFoodName(),"waiting",totalBill,""));
-                            firebaseDatabase.getReference("OrderMetadata").child("Owner").child(key).setValue(new OrderMetadata(getFoodName(),"waiting",totalBill,""));
+                            firebaseDatabase.getReference("OwnerOrders").child("Pending").child(key).setValue(FirebaseAuth.getInstance().getUid());
                             Intent intent=new Intent(GetUserLocation.this,MyOrders.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);
@@ -172,5 +172,5 @@ public class GetUserLocation extends FragmentActivity implements OnMapReadyCallb
         return stringBuilder.toString();
     }
 
-
+*/
 }

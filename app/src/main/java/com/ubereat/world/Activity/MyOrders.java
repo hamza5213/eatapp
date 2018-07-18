@@ -98,8 +98,11 @@ public class MyOrders extends AppCompatActivity implements OnListFragmentInterac
     public void onListFragmentInteraction(Bundle details, String action, boolean isFabClicked) {
 
         int position=details.getInt("position");
-        if(orderMetadataArrayList.get(position).equals("On the way"))
+        if(orderMetadataArrayList.get(position).getStatus().equals("On The Way"))
         {
+            Intent i =new Intent(this,UserOrderTracking.class);
+            i.putExtra("riderId",orderMetadataArrayList.get(position).getRiderId());
+            startActivity(i);
 
         }
         else
