@@ -134,7 +134,7 @@ public class FoodDisplayAdapter extends RecyclerView.Adapter<FoodDisplayAdapter.
             final int pos=position;
             mFoodTitle.setText(foodItem.getFoodItemTitle());
             mFoodDescription.setText(foodItem.getFoodItemDescription());
-            mFoodPrice.setText("$"+String.valueOf(foodItem.getFoodItemPrice()));
+            mFoodPrice.setText("Rs."+String.valueOf(foodItem.getFoodItemPrice()));
             mFoodAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -222,15 +222,15 @@ public class FoodDisplayAdapter extends RecyclerView.Adapter<FoodDisplayAdapter.
             this.foodItem = foodItem;
             mFoodTitle.setText(foodItem.getFoodItemTitle());
             mFoodDescription.setText(foodItem.getFoodItemDescription());
-            mFoodPrice.setText("$"+String.valueOf(foodItem.getFoodItemPrice()));
-            mView.setOnClickListener(new View.OnClickListener() {
+            mFoodPrice.setText("Rs."+String.valueOf(foodItem.getFoodItemPrice()));
+           /* mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
                     bundle.putString("flag", "owner");
                     mListener.onListFragmentInteraction(bundle, "foodItem", true);
                 }
-            });
+            });*/
             String spicelevel=foodItem.getSpiceLevel();
             if(spicelevel.equals("High"))
             {

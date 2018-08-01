@@ -36,6 +36,7 @@ import Interfaces.OnListFragmentInteractionListener;
 import ModelClasses.FoodItem;
 import ModelClasses.FoodItemFirebase;
 import ModelClasses.OrderDItem;
+import dmax.dialog.SpotsDialog;
 
 public class FoodDisplayActivity extends AppCompatActivity implements OnListFragmentInteractionListener {
 
@@ -45,6 +46,8 @@ public class FoodDisplayActivity extends AppCompatActivity implements OnListFrag
     String authToken="3d8a264f7a584f93be5fbb79d6572f8f";
     FoodDisplayAdapter adapter;
     ArrayList<OrderDItem> orderList;
+    android.app.AlertDialog alertDialog;
+    boolean loaded;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +56,9 @@ public class FoodDisplayActivity extends AppCompatActivity implements OnListFrag
         setSupportActionBar(toolbar);
         foodItems=new ArrayList<>();
         counts=new HashMap<>();
+        loaded=false;
+        alertDialog= new SpotsDialog.Builder().setContext(this).build();
+        alertDialog.show();
         AndroidNetworking.initialize(getApplicationContext());
         orderList=new ArrayList<>();
         fetchFoodItems();
@@ -86,6 +92,11 @@ public class FoodDisplayActivity extends AppCompatActivity implements OnListFrag
                             String fid=object.getString("id");
                             foodItems.add(new FoodItem(foodTitle,foodItemFirebase.getPrice(),foodDescription,foodItemFirebase.getSpiceLevel(),fid));
                             adapter.notifyDataSetChanged();
+                            if(!loaded)
+                            {
+                                loaded=true;
+                                alertDialog.dismiss();
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

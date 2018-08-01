@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/order_detail_menu_sc"
+        android:icon="@drawable/cook2"
+        android:title="Start Cooking"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/order_detail_menu_rider"
+        android:icon="@drawable/rider"
+        android:title="Assign Rider"
+        app:showAsAction="always|withText" />
+</menu>

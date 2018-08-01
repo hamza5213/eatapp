@@ -35,6 +35,7 @@ import Adapter.FoodDisplayAdapter;
 import Adapter.OrderDisplayAdapter;
 import Interfaces.OnListFragmentInteractionListener;
 import ModelClasses.FoodItem;
+import ModelClasses.Notification;
 import ModelClasses.OrderDItem;
 import ModelClasses.OrderFirebase;
 import ModelClasses.OrderMetadata;
@@ -145,8 +146,9 @@ public class DisplayOrder extends AppCompatActivity implements OnListFragmentInt
                             OrderFirebase orderFirebase=new OrderFirebase(orderItems,totalBill,address,loc.longitude,loc.latitude,url);
                             firebaseDatabase.getReference("Orders").child(key).setValue(orderFirebase);
                             // firebaseDatabase.getReference("UserOrder").child(FirebaseAuth.getInstance().getUid()).child(key).setValue(true);
-                            firebaseDatabase.getReference("OrderMetadata").child(FirebaseAuth.getInstance().getUid()).child(key).setValue(new OrderMetadata(getFoodName(),"waiting",totalBill,""));
+                            firebaseDatabase.getReference("OrderMetadata").child(FirebaseAuth.getInstance().getUid()).child(key).setValue(new OrderMetadata(getFoodName(),"Pending",totalBill,"TBD","TBD",address));
                             firebaseDatabase.getReference("OwnerOrders").child("Pending").child(key).setValue(FirebaseAuth.getInstance().getUid());
+                            firebaseDatabase.getReference("Notification").push().setValue(new Notification("Cldo5yyMAuNYzvLTS46Sl7vaXd93","Order Pending","A New Order has arrived "));
                             Intent intent=new Intent(DisplayOrder.this,MyOrders.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(intent);

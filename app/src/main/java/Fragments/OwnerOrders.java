@@ -62,7 +62,7 @@ public class OwnerOrders extends Fragment implements OnListFragmentInteractionLi
         orderIds=new ArrayList<>();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.ownerOrder_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        adapter = new MyOrderAdapter(orderMetadataArrayList,context, this);
+        adapter = new MyOrderAdapter(orderMetadataArrayList,context, this,orderIds,true);
         recyclerView.setAdapter(adapter);
         fetchUserOrdersMetaData();
         return view;
@@ -103,6 +103,13 @@ public class OwnerOrders extends Fragment implements OnListFragmentInteractionLi
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
+                int index=orderIds.indexOf(dataSnapshot.getKey());
+                if(index!=-1)
+                {
+                    orderIds.remove(index);
+                    orderMetadataArrayList.remove(index);
+                    adapter.notifyDataSetChanged();
+                }
             }
 
             @Override
@@ -123,9 +130,16 @@ public class OwnerOrders extends Fragment implements OnListFragmentInteractionLi
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                orderMetadataArrayList.add(dataSnapshot.getValue(OrderMetadata.class));
-                orderIds.add(dataSnapshot.getKey());
-                adapter.notifyDataSetChanged();
+                int index=orderIds.indexOf(dataSnapshot.getKey());
+                if(index==-1) {
+                    orderMetadataArrayList.add(dataSnapshot.getValue(OrderMetadata.class));
+                    orderIds.add(dataSnapshot.getKey());
+                    adapter.notifyDataSetChanged();
+                }
+                else {
+                    orderMetadataArrayList.set(index,dataSnapshot.getValue(OrderMetadata.class));
+                    adapter.notifyDataSetChanged();
+                }
             }
 
             @Override

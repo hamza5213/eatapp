@@ -9,12 +9,16 @@ public class OrderMetadata {
     String status;
     long totalBill;
     String riderId;
+    String riderName;
+    String address;
 
-    public OrderMetadata(String foodNames, String status, long totalBill, String riderId) {
+    public OrderMetadata(String foodNames, String status, long totalBill, String riderId, String riderName, String address) {
         this.foodNames = foodNames;
         this.status = status;
         this.totalBill = totalBill;
         this.riderId = riderId;
+        this.riderName = riderName;
+        this.address = address;
     }
 
     public OrderMetadata() {
@@ -50,5 +54,21 @@ public class OrderMetadata {
 
     public void setRiderId(String riderId) {
         this.riderId = riderId;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getRiderName() {
+        return riderName;
+    }
+
+    public void setRiderName(String riderName) {
+        this.riderName = riderName;
     }
 }

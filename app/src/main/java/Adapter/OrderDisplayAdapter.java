@@ -12,6 +12,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.ubereat.world.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import Interfaces.OnListFragmentInteractionListener;
@@ -48,8 +50,9 @@ public class OrderDisplayAdapter extends RecyclerView.Adapter<OrderDisplayAdapte
             holder.orderItem=mValues.get(position);
             holder.mFoodTitle.setText(mValues.get(position).getFoodItem().getFoodItemTitle());
             holder.mFoodDescription.setText(mValues.get(position).getFoodItem().getFoodItemDescription());
-            holder.mFoodPrice.setText("$"+String.valueOf(mValues.get(position).getFoodItem().getFoodItemPrice()));
+            holder.mFoodPrice.setText("Rs. "+String.valueOf(mValues.get(position).getFoodItem().getFoodItemPrice()));
             holder.mFoodCount.setText(String.valueOf(mValues.get(position).getQuantity())+"x");
+            holder.mTotalPrice.setText("Rs. "+String.valueOf(mValues.get(position).getQuantity()*mValues.get(position).getFoodItem().getFoodItemPrice()));
             }
 
 
@@ -65,6 +68,7 @@ public class OrderDisplayAdapter extends RecyclerView.Adapter<OrderDisplayAdapte
         public final TextView mFoodTitle;
         public final TextView mFoodDescription;
         public final TextView mFoodPrice;
+        public final TextView mTotalPrice;
         public final TextView mFoodCount;
         public OrderDItem orderItem;
 
@@ -76,6 +80,7 @@ public class OrderDisplayAdapter extends RecyclerView.Adapter<OrderDisplayAdapte
             mFoodDescription=view.findViewById(R.id.order_detail_item_description);
             mFoodPrice=view.findViewById(R.id.order_detail_item_price);
             mFoodCount=view.findViewById(R.id.order_detail_item_quantity);
+            mTotalPrice=view.findViewById(R.id.order_detail_item_totalPrice);
         }
     }
 

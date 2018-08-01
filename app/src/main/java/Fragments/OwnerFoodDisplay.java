@@ -35,6 +35,7 @@ import Adapter.FoodDisplayAdapter;
 import Interfaces.OnListFragmentInteractionListener;
 import ModelClasses.FoodItem;
 import ModelClasses.FoodItemFirebase;
+import dmax.dialog.SpotsDialog;
 
 
 /**
@@ -49,6 +50,8 @@ public class OwnerFoodDisplay extends Fragment {
     ArrayList<FoodItem> orderList;
     OnListFragmentInteractionListener mListener;
     Context context;
+    android.app.AlertDialog alertDialog;
+    boolean loaded;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +63,9 @@ public class OwnerFoodDisplay extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.owner_food_display_fragment, container, false);
+        loaded=false;
+        alertDialog= new SpotsDialog.Builder().setContext(context).build();
+        alertDialog.show();
         foodItems=new ArrayList<>();
         orderList=new ArrayList<>();
         fetchFoodItems();
@@ -107,6 +113,11 @@ public class OwnerFoodDisplay extends Fragment {
                                     String fid=object.getString("id");
                                     foodItems.add(new FoodItem(foodTitle,foodItemFirebase.getPrice(),foodDescription,foodItemFirebase.getSpiceLevel(),fid));
                                     adapter.notifyDataSetChanged();
+                                    if(!loaded)
+                                    {
+                                        loaded=true;
+                                        alertDialog.dismiss();
+                                    }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

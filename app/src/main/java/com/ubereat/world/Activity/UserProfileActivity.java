@@ -187,18 +187,21 @@ public class UserProfileActivity extends AppCompatActivity implements IPickResul
                 if(userFlag==2) {
                      userProfile = new UserProfile(Name.getText().toString(), firebaseUser.getPhoneNumber(), "rider");
                      firebaseDatabase.getReference("Riders").child(firebaseUser.getUid()).setValue(true);
+                    startActivity(new Intent(UserProfileActivity.this, RiderMainActivity.class));
 
                 }
                 else if (userFlag==1)
                 {
                     userProfile = new UserProfile(Name.getText().toString(), firebaseUser.getPhoneNumber(), "owner");
+                    startActivity(new Intent(UserProfileActivity.this, OwnerScreen.class));
                 }
                 else
                 {
                      userProfile = new UserProfile(Name.getText().toString(), firebaseUser.getPhoneNumber(), "consumer");
+                    startActivity(new Intent(UserProfileActivity.this, MyOrders.class));
                 }
                 userProfileRef.setValue(userProfile);
-                startActivity(new Intent(UserProfileActivity.this, MyOrders.class));
+
                 finish();
 
             }

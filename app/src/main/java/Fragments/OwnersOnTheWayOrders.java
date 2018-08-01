@@ -56,7 +56,7 @@ public class OwnersOnTheWayOrders extends Fragment implements OnListFragmentInte
         orderIds=new ArrayList<>();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.owner_order_otw_rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        adapter = new MyOrderAdapter(orderMetadataArrayList,context, this);
+        adapter = new MyOrderAdapter(orderMetadataArrayList,context, this,orderIds);
         recyclerView.setAdapter(adapter);
         fetchUserOrdersMetaData();
         return view;
@@ -101,7 +101,11 @@ public class OwnersOnTheWayOrders extends Fragment implements OnListFragmentInte
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                String key=dataSnapshot.getKey();
+                int index=orderIds.indexOf(key);
+                orderIds.remove(index);
+                orderMetadataArrayList.remove(index);
+                adapter.notifyDataSetChanged();
             }
 
             @Override

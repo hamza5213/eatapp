@@ -1,7 +1,9 @@
 package com.ubereat.world.Activity;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.error.ANError;
@@ -93,9 +98,14 @@ public class RiderMainActivity extends AppCompatActivity implements OnListFragme
 
             }
 
+
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
+                RiderTask riderTask=dataSnapshot.getValue(RiderTask.class);
+                int index=riderTasks.indexOf(riderTask);
+                riderTasks.remove(index);
+                adapter.notifyDataSetChanged();
             }
 
             @Override
@@ -113,13 +123,38 @@ public class RiderMainActivity extends AppCompatActivity implements OnListFragme
     @Override
     public void onListFragmentInteraction(Bundle details, String action, boolean isFabClicked) {
         int position=details.getInt("position");
-        DatabaseReference orderRef= firebaseDatabase.getReference("OrderMetadata").child(riderTasks.get(position).getClientId()).child(riderTasks.get(position).getOrderId());
-        orderRef.child("status").setValue("On The Way");
-        orderRef.child("riderId").setValue(FirebaseAuth.getInstance().getUid());
+       // DatabaseReference orderRef= firebaseDatabase.getReference("OrderMetadata").child(riderTasks.get(position).getClientId()).child(riderTasks.get(position).getOrderId());
+       // orderRef.child("status").setValue("On The Way");
+        //orderRef.child("riderId").setValue(FirebaseAuth.getInstance().getUid());
         Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("http://maps.google.com/maps?f=d&daddr="+String.valueOf(riderTasks.get(position).getLatitude())+","+String.valueOf(riderTasks.get(position).getLongitude())));
-        intent.setComponent(new ComponentName("com.google.android.apps.maps",
-                "com.google.android.maps.MapsActivity"));
+                Uri.parse("http://maps.google.com/maps?&daddr="+String.valueOf(riderTasks.get(position).getLatitude())+","+String.valueOf(riderTasks.get(position).getLongitude())));
+        //intent.setComponent(new ComponentName("com.google.android.apps.maps","com.google.android.maps.MapsActivity"));
         startActivity(intent);
     }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.main_menu_signOut)
+        {
+
+            DatabaseReference dR = FirebaseDatabase.getInstance().getReference("FCM_InstanceID").child(FirebaseAuth.getInstance().getUid());
+            dR.removeValue();
+            SharedPreferences sharedPreferences = getSharedPreferences("CurrentUser", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            Intent i=new Intent(this,LoginActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            FirebaseAuth.getInstance().signOut();
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 }

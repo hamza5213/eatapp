@@ -8,31 +8,18 @@
     tools:context="com.ubereat.world.Activity.MyOrders"
     tools:showIn="@layout/activity_my_orders">
 
-    <TextView
-        android:id="@+id/MyOrdersTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/montserrat"
-        android:gravity="center"
-        android:text="Current Orders"
-        android:textSize="35sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_order_rv"
         android:layout_width="395dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="42dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="24dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/MyOrdersTitle" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

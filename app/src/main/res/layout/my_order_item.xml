@@ -12,64 +12,133 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/my_order_item_title"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="5dp"
-            android:text="Chicken Tikka, Chiccken Biryani"
+        <View
+            android:id="@+id/seperator1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/my_order_item_status_image" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="41dp"
-            android:text="TotalBill"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/my_order_item_title" />
-
-        <TextView
-            android:id="@+id/my_order_bill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="41dp"
-            android:text="$500"
-            app:layout_constraintStart_toEndOf="@+id/textView3"
-            app:layout_constraintTop_toBottomOf="@id/my_order_item_title" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="31dp"
-            android:layout_marginEnd="16dp"
-            android:text="Status"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/my_order_status" />
-
-        <TextView
-            android:id="@+id/my_order_status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="31dp"
-            android:layout_marginEnd="16dp"
-            android:text="Waiting"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="Your Order Contains"
+        <View
+            android:id="@+id/view"
+            android:layout_width="2dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="53dp"
+            android:background="?attr/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/my_order_item_status_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/pending_icon" />
+
+        <TextView
+            android:id="@+id/my_order_item_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Pending"
+            android:textSize="30sp"
+            app:layout_constraintStart_toEndOf="@+id/my_order_item_status_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/open_sans"
+            android:text="OrderId"
+            android:textColor="@color/place_autocomplete_prediction_primary_text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/seperator1" />
+
+        <TextView
+            android:id="@+id/my_order_item_orderid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="1922555235465"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView8"
+            app:layout_constraintStart_toEndOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/open_sans"
+            android:text="TotalBill"
+            android:textColor="@color/place_autocomplete_prediction_primary_text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@id/textView8" />
+
+        <TextView
+            android:id="@+id/my_order_item_totalBill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="500 pkr"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView31"
+            app:layout_constraintStart_toEndOf="@+id/textView8" />
+
+        <TextView
+            android:id="@+id/textView32"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Address"
+            android:textColor="@color/place_autocomplete_prediction_primary_text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@id/textView31" />
+
+        <TextView
+            android:id="@+id/my_order_item_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"
+            android:text="97 Salik Street Shujha Road"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView32"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView31" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/open_sans"
+            android:text="Rider's Name"
+            android:textColor="@color/place_autocomplete_prediction_primary_text"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@id/my_order_item_address" />
+
+        <TextView
+            android:id="@+id/my_order_item_riderName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="TBD"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView33"
+            app:layout_constraintStart_toEndOf="@+id/textView33" />
 
     </android.support.constraint.ConstraintLayout>
 

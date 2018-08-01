@@ -3,10 +3,13 @@ package com.ubereat.world.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.BounceInterpolator;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -15,6 +18,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+
 import com.ubereat.world.R;
 
 import java.util.Arrays;
@@ -27,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //rotateText();
 
         if(FirebaseAuth.getInstance().getCurrentUser()!=null)
         {
@@ -52,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
 
         if(requestCode==123&&resultCode==RESULT_OK)
         {
+            DatabaseReference dR = FirebaseDatabase.getInstance().getReference("FCM_InstanceID").child(FirebaseAuth.getInstance().getUid());
+            dR.setValue(FirebaseInstanceId.getInstance().getToken());
             checkProfile();
         }
 
@@ -100,6 +108,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+
+
 
 
 }

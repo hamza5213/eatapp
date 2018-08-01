@@ -43,8 +43,8 @@
 
             <TextView
                 android:id="@+id/order_detail_item_quantity"
-                android:layout_width="32dp"
-                android:layout_height="37dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/open_sans"
@@ -55,14 +55,58 @@
 
             <TextView
                 android:id="@+id/order_detail_item_price"
-                android:layout_width="104dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="24dp"
+                android:layout_width="65dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="3dp"
                 android:layout_marginTop="16dp"
                 android:text="Rs. 450"
-                android:textAppearance="@android:style/TextAppearance.Material.Large"
-                app:layout_constraintStart_toEndOf="@+id/order_detail_item_title"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@+id/view2"
+                app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="2dp"
+                android:layout_height="110dp"
+                android:layout_marginEnd="70dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="Total"
+                app:layout_constraintStart_toEndOf="@+id/view2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="16dp"
+                android:text="Unit"
+                app:layout_constraintEnd_toStartOf="@+id/view2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/order_detail_item_totalPrice"
+                android:layout_width="65dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="16dp"
+                android:text="RS. 900"
+                android:textAlignment="textStart"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/view2"
+                app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
 
         </android.support.constraint.ConstraintLayout>

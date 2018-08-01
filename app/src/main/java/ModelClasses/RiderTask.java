@@ -88,4 +88,13 @@ public class RiderTask {
     public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof RiderTask)
+        {
+            return orderId.equals(((RiderTask)obj).getOrderId());
+        }
+        return false;
+    }
 }

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/custom_marker_view"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/marker_mask">
-
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:background="@drawable/marker45">
     <ImageView
-        android:id="@+id/g_marker_image"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center_horizontal"
-        android:contentDescription="@null"
-        android:src="@drawable/logo" />
-</FrameLayout>
+        android:layout_width="40dp"
+        android:layout_height="40dp" />
+
+</android.support.constraint.ConstraintLayout>

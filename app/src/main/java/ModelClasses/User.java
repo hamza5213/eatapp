@@ -1,10 +1,12 @@
 package ModelClasses;
 
+import ir.mirrajabi.searchdialog.core.Searchable;
+
 /**
  * Created by hamza on 23-Jun-18.
  */
 
-public class User {
+public class User implements Searchable {
     String userId;
     String phoneNumber;
     String name;
@@ -56,4 +58,8 @@ public class User {
     }
 
 
+    @Override
+    public String getTitle() {
+        return name;
+    }
 }

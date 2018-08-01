@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -49,9 +50,13 @@ dependencies {
     compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:1.1.0'
     implementation 'com.github.d-max:spots-dialog:1.1@aar'
-
-
+    compile 'com.github.mirrajabi:search-dialog:1.2.2'
+    compile 'com.ss.bannerslider:bannerslider:2.0.0'
+    compile 'com.github.markushi:circlebutton:1.1'
+    compile'com.google.firebase:firebase-messaging:17.1.0'
+    implementation 'com.akexorcist:googledirectionlibrary:1.1.1'
     compile 'com.google.android.gms:play-services-location:15.0.1'
+
 
 
 }

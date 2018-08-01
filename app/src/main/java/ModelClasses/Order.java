@@ -1,12 +1,15 @@
 package ModelClasses;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 /**
  * Created by hamza on 05-Jul-18.
  */
 
-public class Order {
+public class Order implements Parcelable {
     ArrayList<OrderDItem> orderItems;
     double totalBill;
     double longitude;
@@ -91,4 +94,44 @@ public class Order {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeTypedList(this.orderItems);
+        dest.writeDouble(this.totalBill);
+        dest.writeDouble(this.longitude);
+        dest.writeDouble(this.latitude);
+        dest.writeString(this.uid);
+        dest.writeString(this.description);
+        dest.writeString(this.time);
+        dest.writeString(this.address);
+    }
+
+    protected Order(Parcel in) {
+        this.orderItems = in.createTypedArrayList(OrderDItem.CREATOR);
+        this.totalBill = in.readDouble();
+        this.longitude = in.readDouble();
+        this.latitude = in.readDouble();
+        this.uid = in.readString();
+        this.description = in.readString();
+        this.time = in.readString();
+        this.address = in.readString();
+    }
+
+    public static final Parcelable.Creator<Order> CREATOR = new Parcelable.Creator<Order>() {
+        @Override
+        public Order createFromParcel(Parcel source) {
+            return new Order(source);
+        }
+
+        @Override
+        public Order[] newArray(int size) {
+            return new Order[size];
+        }
+    };
 }
